@@ -29,7 +29,8 @@ app.get("/api/news", async (req, res) => {
   const response = await fetch(url);
   // const data = await response.json();
   // res.setHeader("Content-Type", "application/json");
-  console.log(response);
+  const data = await response.json();
+  console.log(data);
   res.json(response);
   // console.log(data);
 });
