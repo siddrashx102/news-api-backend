@@ -15,13 +15,18 @@ console.log("API Key:", process.env.NEWS_API_KEY0); // Add a label for clarity
 //   })
 // );
 
+const url = `https://newsapi.org/v2/top-headlines?country=us&category=general&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY0}&page=1&pageSize=6`;
+const response = await fetch(url);
+const data = await response.json();
+console.log(data);
+
 app.get("/api/news", async (req, res) => {
   const url = `https://newsapi.org/v2/top-headlines?country=us&category=${req.query.category}&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY0}&page=${req.query.page}&pageSize=${req.query.pageSize}`;
   const response = await fetch(url);
   const data = await response.json();
-  res.setHeader('Content-Type', 'application/json');
+  res.setHeader("Content-Type", "application/json");
   res.status(200).json(data);
-  console.log(data);
+  // console.log(data);
 });
 
 app.listen(PORT, () => console.log(`Proxy server running on port ${PORT}`));
