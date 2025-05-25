@@ -19,7 +19,8 @@ app.get("/api/news", async (req, res) => {
   const url = `https://newsapi.org/v2/top-headlines?country=us&category=${req.query.category}&sortBy=publishedAt&apiKey=${process.env.NEWS_API_KEY0}&page=${req.query.page}&pageSize=${req.query.pageSize}`;
   const response = await fetch(url);
   const data = await response.json();
-  res.json(data);
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).json(data);
   console.log(data);
 });
 
